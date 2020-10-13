@@ -6,6 +6,7 @@ class HomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple[900],
         title: Text('Taekwondo'),
       ),
       body: InkWell(
