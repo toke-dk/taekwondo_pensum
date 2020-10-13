@@ -9,6 +9,8 @@ class _IngameWidgetState extends State<IngameWidget> {
   @override
   Widget build(BuildContext context) {
     print('ingame');
-    return Container();
+    return Scaffold(
+      appBar: AppBar(),
+    );
   }
 }
