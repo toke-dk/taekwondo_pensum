@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 class IngameWidget extends StatefulWidget {
 
+  int round;
   var words;
-  IngameWidget({Key key, this.words}) : super(key: key);
-
-
-
+  IngameWidget({Key key, this.words, this.round}) : super(key: key);
 
   @override
   _IngameWidgetState createState() => _IngameWidgetState();
@@ -25,7 +23,7 @@ class _IngameWidgetState extends State<IngameWidget> {
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(top: 20),
-              child: Text(widget.words.keys.toList()[0], style: TextStyle(fontSize: 25),),
+              child: Text(widget.words.keys.toList()[widget.round], style: TextStyle(fontSize: 25),),
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 60, vertical: 80),
@@ -58,13 +56,17 @@ class _IngameWidgetState extends State<IngameWidget> {
                     color: Colors.green,
                     child: Text('Næste', style: TextStyle(color: Colors.white),),
                     onPressed: () =>
-                    {Navigator.pushReplacement(
+                    {
+                      //if (widget.words.keys.toList().legth())
+                      widget.round+=1,
+                      Navigator.pushReplacement(
                       context,
                       PageRouteBuilder(
                         transitionDuration: Duration(seconds: 0),
-                        pageBuilder: (context, animation1, animation2) => IngameWidget(words: widget.words,),
+                        pageBuilder: (context, animation1, animation2) => IngameWidget(words: widget.words, round: widget.round,),
                       )
-                    )},
+                    )
+                    },
                   ),
                 ),
 

@@ -25,7 +25,7 @@ class Belt extends StatelessWidget {
       body: InkWell(
         onTap: () {Navigator.push(context, MaterialPageRoute(
             builder: (context) =>
-                IngameWidget(words: words,)
+                IngameWidget(words: words, round: 0,)
         ));},
         child: Container(
           margin: EdgeInsets.all(10),
