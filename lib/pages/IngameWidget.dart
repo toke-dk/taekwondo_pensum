@@ -1,4 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:taekwondopensum/HomeWidget.dart';
+
+class IngameOverviewer extends StatefulWidget {
+  @override
+  _IngameOverviewerState createState() => _IngameOverviewerState();
+}
+
+class _IngameOverviewerState extends State<IngameOverviewer> {
+  @override
+  Widget build(BuildContext context) {
+      return IngameWidget();
+  }
+}
+
 
 class IngameWidget extends StatefulWidget {
   @override
@@ -24,8 +38,18 @@ class _IngameWidgetState extends State<IngameWidget> {
               margin: EdgeInsets.symmetric(horizontal: 60, vertical: 80),
               alignment: Alignment.topCenter,
               child: TextFormField(
-                autofocus: true,
+                //autofocus: true,
                 decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 2),
+                      borderRadius: BorderRadius.circular(12)
+                    ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderRadius: BorderRadius.circular(12)
+
+                ),
+                  fillColor: Colors.grey[300],
                     filled: true,
                   border: InputBorder.none
                 ),
@@ -40,7 +64,12 @@ class _IngameWidgetState extends State<IngameWidget> {
                   child: RaisedButton(
                     color: Colors.green,
                     child: Text('Næste', style: TextStyle(color: Colors.white),),
-                    onPressed: () => {},
+                    onPressed: () => {Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                          HomeWidget()
+                      )
+                    )},
                   ),
                 ),
 
@@ -50,3 +79,5 @@ class _IngameWidgetState extends State<IngameWidget> {
     );
   }
 }
+
+

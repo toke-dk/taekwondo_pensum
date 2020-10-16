@@ -6,13 +6,13 @@ class HomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple[900],
+        backgroundColor: Colors.black,
         title: Text('Taekwondo'),
       ),
       body: InkWell(
         onTap: () {Navigator.push(context, MaterialPageRoute(
         builder: (context) =>
-            IngameWidget()
+            IngameOverviewer()
       ));},
         child: Belt()),
     );
@@ -23,6 +23,7 @@ class Belt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       body: Container(
         margin: EdgeInsets.all(10),
         height: 40,
@@ -32,7 +33,7 @@ class Belt extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text('3.Kup'),
+              Text('3.Kup', style: TextStyle(color: Colors.white),),
               Container(
                 width: 10,
                 color: Colors.black,

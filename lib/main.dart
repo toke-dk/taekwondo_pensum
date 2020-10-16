@@ -7,6 +7,6 @@ void main() => runApp(MaterialApp(
   initialRoute: '/',
   routes: {
     '/': (context) => HomeWidget(),
-    '/ingame': (context) => IngameWidget()
+    '/ingame': (context) => IngameOverviewer()
   },
 ));
