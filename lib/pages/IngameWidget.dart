@@ -11,13 +11,16 @@ class IngameWidget extends StatefulWidget {
 
 class _IngameWidgetState extends State<IngameWidget> {
   var _formkey = GlobalKey<FormState>();
+  String guess = '';
+  String _correctionText = '';
   @override
   Widget build(BuildContext context) {
     print(widget.words);
     try {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.purple[900],
+          backgroundColor: Colors.black,
+          title: Text('Pensum træner'),
         ),
         body: SingleChildScrollView(
           child: Form(
@@ -30,12 +33,18 @@ class _IngameWidgetState extends State<IngameWidget> {
                     style: TextStyle(fontSize: 25),),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 60, vertical: 80),
+                  margin: EdgeInsets.symmetric(horizontal: 60, vertical: 100),
                   alignment: Alignment.topCenter,
                   child: TextFormField(
+                    onChanged: (value) {
+                      guess = value;
+                    },
                     validator: (String value) {
                       if (value.isEmpty) {
                         return 'Skriv venligst tekst';
+                      }
+                      else if (guess != widget.words.values.toList()[widget.round]) {
+                        return '';
                       }
                       else {
                         return null;
@@ -59,8 +68,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                     style: TextStyle(fontSize: 15,),
                   ),
                 ),
-
-
+                Text(_correctionText),
                 Container(
                   width: 300,
                   margin: EdgeInsets.only(top: 80),
@@ -70,6 +78,12 @@ class _IngameWidgetState extends State<IngameWidget> {
                     onPressed: () =>
                     {
                       //if (widget.words.keys.toList().legth())
+                      print('${widget.words.keys.toList()[widget.round]} er ${widget.words.values.toList()[widget.round]}'),
+                      if (guess!=widget.words.values.toList()[widget.round]) {
+                        setState(() => {_correctionText = '${widget.words.keys.toList()[widget.round]} er ${widget.words.values.toList()[widget.round]}',
+                }),
+                        print('not right')
+                      },
                       if (_formkey.currentState.validate()) {
                         widget.round += 1,
                         Navigator.pushReplacement(
@@ -80,10 +94,10 @@ class _IngameWidgetState extends State<IngameWidget> {
                                 IngameWidget(words: widget.words, round: widget
                                     .round,),),)
                       },
+
                     },
                   ),
                 ),
-
               ],
             ),
           ),
