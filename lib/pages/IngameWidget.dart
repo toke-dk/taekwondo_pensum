@@ -14,66 +14,72 @@ class _IngameWidgetState extends State<IngameWidget> {
   @override
   Widget build(BuildContext context) {
     print(widget.words);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.purple[900],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: 20),
-              child: Text(widget.words.keys.toList()[widget.round], style: TextStyle(fontSize: 25),),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 60, vertical: 80),
-              alignment: Alignment.topCenter,
-              child: TextFormField(
-                //autofocus: true,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white, width: 2),
-                      borderRadius: BorderRadius.circular(12)
-                    ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(12)
-
-                ),
-                  fillColor: Colors.grey[300],
-                    filled: true,
-                  border: InputBorder.none
-                ),
-                style: TextStyle(fontSize: 15,),
-              ),
-            ),
-
-
-                Container(
-                  width: 300,
-                  margin: EdgeInsets.only(top: 80),
-                  child: RaisedButton(
-                    color: Colors.green,
-                    child: Text('Næste', style: TextStyle(color: Colors.white),),
-                    onPressed: () =>
-                    {
-                      //if (widget.words.keys.toList().legth())
-                      widget.round+=1,
-                      Navigator.pushReplacement(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: Duration(seconds: 0),
-                        pageBuilder: (context, animation1, animation2) => IngameWidget(words: widget.words, round: widget.round,),
-                      )
-                    )
-                    },
-                  ),
-                ),
-
-          ],
+    try {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.purple[900],
         ),
-      ),
-    );
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                child: Text(widget.words.keys.toList()[widget.round],
+                  style: TextStyle(fontSize: 25),),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 60, vertical: 80),
+                alignment: Alignment.topCenter,
+                child: TextFormField(
+                  //autofocus: true,
+                  decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white, width: 2),
+                          borderRadius: BorderRadius.circular(12)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue, width: 2),
+                          borderRadius: BorderRadius.circular(12)
+
+                      ),
+                      fillColor: Colors.grey[300],
+                      filled: true,
+                      border: InputBorder.none
+                  ),
+                  style: TextStyle(fontSize: 15,),
+                ),
+              ),
+
+
+              Container(
+                width: 300,
+                margin: EdgeInsets.only(top: 80),
+                child: RaisedButton(
+                  color: Colors.green,
+                  child: Text('Næste', style: TextStyle(color: Colors.white),),
+                  onPressed: () =>
+                  {
+                    //if (widget.words.keys.toList().legth())
+                    widget.round += 1,
+                    Navigator.pushReplacement(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: Duration(seconds: 0),
+                          pageBuilder: (context, animation1, animation2) =>
+                              IngameWidget(words: widget.words, round: widget
+                                  .round,),
+                        )
+                    )
+                  },
+                ),
+              ),
+
+            ],
+          ),
+        ),
+      );
+    } catch (error) {
+      Navigator.pop(context);
+    }
   }
 }
-
