@@ -64,10 +64,12 @@ class _IngameWidgetState extends State<IngameWidget> {
                   child: RaisedButton(
                     color: Colors.green,
                     child: Text('Næste', style: TextStyle(color: Colors.white),),
-                    onPressed: () => {Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                          HomeWidget()
+                    onPressed: () =>
+                    {Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(seconds: 0),
+                        pageBuilder: (context, animation1, animation2) => IngameWidget(),
                       )
                     )},
                   ),
@@ -80,4 +82,10 @@ class _IngameWidgetState extends State<IngameWidget> {
   }
 }
 
+class TestWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(child: Text('hi'),);
+  }
+}
 
