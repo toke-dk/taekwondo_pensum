@@ -15,6 +15,9 @@ class HomeWidget extends StatelessWidget {
 }
 
 class Belt extends StatelessWidget {
+
+  var words = {'hej': 'hello', 'nej': 'no', 'hvordan': 'how', 'jeg':'I'};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +25,7 @@ class Belt extends StatelessWidget {
       body: InkWell(
         onTap: () {Navigator.push(context, MaterialPageRoute(
             builder: (context) =>
-                IngameOverviewer()
+                IngameWidget(words: words,)
         ));},
         child: Container(
           margin: EdgeInsets.all(10),

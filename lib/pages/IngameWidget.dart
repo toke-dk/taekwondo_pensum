@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:taekwondopensum/HomeWidget.dart';
-
-class IngameOverviewer extends StatefulWidget {
-  @override
-  _IngameOverviewerState createState() => _IngameOverviewerState();
-}
-
-class _IngameOverviewerState extends State<IngameOverviewer> {
-  @override
-  Widget build(BuildContext context) {
-      return IngameWidget();
-  }
-}
-
 
 class IngameWidget extends StatefulWidget {
+
+  var words;
+  IngameWidget({Key key, this.words}) : super(key: key);
+
+
+
+
   @override
   _IngameWidgetState createState() => _IngameWidgetState();
 }
@@ -22,7 +15,7 @@ class IngameWidget extends StatefulWidget {
 class _IngameWidgetState extends State<IngameWidget> {
   @override
   Widget build(BuildContext context) {
-    print('ingame');
+    print(widget.words);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple[900],
@@ -32,7 +25,7 @@ class _IngameWidgetState extends State<IngameWidget> {
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(top: 20),
-              child: Text('Et ord', style: TextStyle(fontSize: 25),),
+              child: Text(widget.words.keys.toList()[0], style: TextStyle(fontSize: 25),),
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 60, vertical: 80),
@@ -69,7 +62,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                       context,
                       PageRouteBuilder(
                         transitionDuration: Duration(seconds: 0),
-                        pageBuilder: (context, animation1, animation2) => IngameWidget(),
+                        pageBuilder: (context, animation1, animation2) => IngameWidget(words: widget.words,),
                       )
                     )},
                   ),
@@ -79,13 +72,6 @@ class _IngameWidgetState extends State<IngameWidget> {
         ),
       ),
     );
-  }
-}
-
-class TestWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(child: Text('hi'),);
   }
 }
 
