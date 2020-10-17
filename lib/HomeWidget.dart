@@ -16,7 +16,17 @@ class HomeWidget extends StatelessWidget {
 
 class Belt extends StatelessWidget {
 
-  var words = {'hej': 'hello', 'nej': 'no', 'hvordan': 'how', 'jeg':'I'};
+  var words = {
+    'Bam-jumeok': 'Kastanjenæve',
+    'Balnal-deung': 'Inderside af fod',
+    'Sonnal-deung': 'Inderside af knivhånd',
+    'Teok':'Hage',
+    'Dangyo': 'Trække',
+    'Santeul': 'Bjerg',
+    'Oe-santeul': 'Halvt bjerg',
+    'Pal': '8.',
+    'Geodeureo': 'støtte',
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +35,7 @@ class Belt extends StatelessWidget {
       body: InkWell(
         onTap: () {Navigator.push(context, MaterialPageRoute(
             builder: (context) =>
-                IngameWidget(words: words, round: 0,)
+                IngameWidget(words: words, round: 0, points: 0,)
         ));},
         child: Container(
           margin: EdgeInsets.all(10),

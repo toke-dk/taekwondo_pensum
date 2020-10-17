@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class IngameWidget extends StatefulWidget {
   int round;
   var words;
-  IngameWidget({Key key, this.words, this.round}) : super(key: key);
+  int points;
+  IngameWidget({Key key, this.words, this.round, this.points}) : super(key: key);
 
   @override
   _IngameWidgetState createState() => _IngameWidgetState();
@@ -27,6 +28,7 @@ class _IngameWidgetState extends State<IngameWidget> {
             key: _formkey,
             child: Column(
               children: <Widget>[
+                MyPoints(points: widget.points,),
                 Container(
                   margin: EdgeInsets.only(top: 20),
                   child: Text(widget.words.keys.toList()[widget.round],
@@ -47,6 +49,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                         return 'Ikke korrekt';
                       }
                       else {
+                        widget.points += 1;
                         return null;
                       }
                     },
@@ -97,7 +100,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                             transitionDuration: Duration(seconds: 0),
                             pageBuilder: (context, animation1, animation2) =>
                                 IngameWidget(words: widget.words, round: widget
-                                    .round,),),)
+                                    .round, points: widget.points,),),)
                       },
 
                     },
@@ -111,5 +114,33 @@ class _IngameWidgetState extends State<IngameWidget> {
     } catch (error) {
       Navigator.pop(context);
     }
+  }
+}
+
+class MyPoints extends StatefulWidget {
+
+  final int points;
+  MyPoints({Key key, this.points}) : super(key: key);
+
+  @override
+  _MyPointsState createState() => _MyPointsState();
+}
+
+class _MyPointsState extends State<MyPoints> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 10, left: 10),
+      child: Row(
+        children: <Widget>[
+          Image.asset(
+            'assets/sidekick.jpg',
+            scale: 40,
+          ),
+          Text('=', style: TextStyle(fontSize: 20),),
+          Text('${widget.points}')
+        ],
+      ),
+    );
   }
 }
