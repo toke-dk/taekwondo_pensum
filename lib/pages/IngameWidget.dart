@@ -44,7 +44,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                         return 'Skriv venligst tekst';
                       }
                       else if (guess != widget.words.values.toList()[widget.round]) {
-                        return '';
+                        return 'Ikke korrekt';
                       }
                       else {
                         return null;
@@ -68,7 +68,12 @@ class _IngameWidgetState extends State<IngameWidget> {
                     style: TextStyle(fontSize: 15,),
                   ),
                 ),
-                Text(_correctionText),
+                Text(
+                  _correctionText,
+                  style: TextStyle(
+                    color: Colors.red
+                  ),
+                ),
                 Container(
                   width: 300,
                   margin: EdgeInsets.only(top: 80),
@@ -80,7 +85,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                       //if (widget.words.keys.toList().legth())
                       print('${widget.words.keys.toList()[widget.round]} er ${widget.words.values.toList()[widget.round]}'),
                       if (guess!=widget.words.values.toList()[widget.round]) {
-                        setState(() => {_correctionText = '${widget.words.keys.toList()[widget.round]} er ${widget.words.values.toList()[widget.round]}',
+                        setState(() => {_correctionText = '"${widget.words.keys.toList()[widget.round]}" er "${widget.words.values.toList()[widget.round]}"',
                 }),
                         print('not right')
                       },
