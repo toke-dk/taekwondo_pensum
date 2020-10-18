@@ -1,3 +1,6 @@
+// TODO make focusNode
+// TODO make it over and over
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class IngameWidget extends StatefulWidget {
@@ -40,12 +43,19 @@ class _IngameWidgetState extends State<IngameWidget> {
     if (_showAnswer) {
       showAnswerWidget = Container(
         margin: EdgeInsets.all(10),
-        height: 50,
+        height: 60,
         color: isAnswer ? Colors.lightGreen : Colors.redAccent,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(isAnswer ? 'Korrekt!' : 'Tæt på!', style: TextStyle(color: Colors.white, fontSize: 20),)
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(isAnswer ? 'Korrekt!' : 'Tæt på!', style: TextStyle(color: Colors.white, fontSize: 20),),
+                SizedBox(height: 5,),
+                isAnswer ? SizedBox() : Text('"${_wordsKeys[widget.round]}" er "${widget.words[_wordsKeys[widget.round]]}"', style: TextStyle(color: Colors.white),)
+              ],
+            ),
           ],
         ),
       );
@@ -66,7 +76,7 @@ class _IngameWidgetState extends State<IngameWidget> {
         color: Colors.blue,
         child: Text('Check svar', style: TextStyle(color: Colors.white),),
         onPressed: () {
-          if (guess == widget.words[_wordsKeys[widget.round]]) {
+          if (guess.toLowerCase() == widget.words[_wordsKeys[widget.round]].toLowerCase()) {
             isAnswer = true;
           } else {
             isAnswer = false;
@@ -95,9 +105,10 @@ class _IngameWidgetState extends State<IngameWidget> {
                     style: TextStyle(fontSize: 25),),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 60, vertical: 100),
+                  margin: EdgeInsets.symmetric(horizontal: 60, vertical: 50),
                   alignment: Alignment.topCenter,
                   child: TextFormField(
+                    textCapitalization: TextCapitalization.words,
                     controller: nameHolder,
                     onChanged: (value) {
                       guess = value;
