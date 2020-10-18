@@ -47,9 +47,10 @@ class _IngameWidgetState extends State<IngameWidget> {
       );
       swapButton = RaisedButton(
         color: isAnswer ? Colors.lightGreen[800] : Colors.brown[800],
-        child: Text('Næste'),
+        child: Text('Næste', style: TextStyle(color: Colors.white),),
         onPressed: () => {
           setState(() {
+            widget.round += 1;
             _showAnswer = !_showAnswer;
           })
         },
