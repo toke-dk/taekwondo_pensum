@@ -50,7 +50,7 @@ class _IngameWidgetState extends State<IngameWidget> {
         ),
       );
       swapButton = RaisedButton(
-        color: isAnswer ? Colors.lightGreen[800] : Colors.brown[800],
+        color: isAnswer ? Colors.lightGreen[800] : Colors.blue,
         child: Text('Næste', style: TextStyle(color: Colors.white),),
         onPressed: () => {
           setState(() {
@@ -63,7 +63,7 @@ class _IngameWidgetState extends State<IngameWidget> {
       );
     } else {
       swapButton = RaisedButton(
-        color: Colors.brown[800],
+        color: Colors.blue,
         child: Text('Check svar', style: TextStyle(color: Colors.white),),
         onPressed: () {
           if (guess == widget.words[_wordsKeys[widget.round]]) {
@@ -81,7 +81,6 @@ class _IngameWidgetState extends State<IngameWidget> {
     try {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
           title: Text('Pensum træner'),
         ),
         body: SingleChildScrollView(
