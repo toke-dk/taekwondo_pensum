@@ -11,9 +11,13 @@ class IngameWidget extends StatefulWidget {
 }
 
 class _IngameWidgetState extends State<IngameWidget> {
-
   bool _showAnswer = false;
   bool isAnswer;
+  final nameHolder = TextEditingController();
+
+  clearInput(){
+    nameHolder.clear();
+  }
 
   var _wordsKeys;
   var _wordsValues;
@@ -50,6 +54,8 @@ class _IngameWidgetState extends State<IngameWidget> {
         child: Text('Næste', style: TextStyle(color: Colors.white),),
         onPressed: () => {
           setState(() {
+            clearInput();
+            guess = '';
             widget.round += 1;
             _showAnswer = !_showAnswer;
           })
@@ -93,20 +99,9 @@ class _IngameWidgetState extends State<IngameWidget> {
                   margin: EdgeInsets.symmetric(horizontal: 60, vertical: 100),
                   alignment: Alignment.topCenter,
                   child: TextFormField(
+                    controller: nameHolder,
                     onChanged: (value) {
                       guess = value;
-                    },
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return 'Skriv venligst tekst';
-                      }
-                      else if (value != widget.words[_wordsKeys[widget.round]]) {
-                        return 'Ikke korrekt';
-                      }
-                      else {
-                        widget.points += 1;
-                        return null;
-                      }
                     },
                     autofocus: true,
                     decoration: InputDecoration(
