@@ -12,7 +12,9 @@ class IngameWidget extends StatefulWidget {
 
 class _IngameWidgetState extends State<IngameWidget> {
 
-  var _shuffledWords;
+  bool _showAnswer = false;
+  bool isAnswer;
+
   var _wordsKeys;
   var _wordsValues;
   @override
@@ -28,7 +30,47 @@ class _IngameWidgetState extends State<IngameWidget> {
   String _correctionText = '';
   @override
   Widget build(BuildContext context) {
-    print('${widget.words} ${_wordsKeys}');
+
+    Widget swapButton = Container();
+    Widget showAnswerWidget = Container();
+    if (_showAnswer) {
+      showAnswerWidget = Container(
+        margin: EdgeInsets.all(10),
+        height: 50,
+        color: isAnswer ? Colors.lightGreen : Colors.redAccent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(isAnswer ? 'Korrekt!' : 'Tæt på!', style: TextStyle(color: Colors.white, fontSize: 20),)
+          ],
+        ),
+      );
+      swapButton = RaisedButton(
+        color: isAnswer ? Colors.lightGreen[800] : Colors.brown[800],
+        child: Text('Næste'),
+        onPressed: () => {
+          setState(() {
+            _showAnswer = !_showAnswer;
+          })
+        },
+      );
+    } else {
+      swapButton = RaisedButton(
+        color: Colors.brown[800],
+        child: Text('Check svar', style: TextStyle(color: Colors.white),),
+        onPressed: () {
+          if (guess == widget.words[_wordsKeys[widget.round]]) {
+            isAnswer = true;
+          } else {
+            isAnswer = false;
+          }
+          setState(() {
+            _showAnswer = !_showAnswer;
+          });
+        },
+      );
+    }
+
     try {
       return Scaffold(
         appBar: AppBar(
@@ -40,7 +82,7 @@ class _IngameWidgetState extends State<IngameWidget> {
             key: _formkey,
             child: Column(
               children: <Widget>[
-                MyPoints(points: widget.points,),
+                showAnswerWidget,
                 Container(
                   margin: EdgeInsets.only(top: 20),
                   child: Text(_wordsKeys[widget.round],
@@ -92,32 +134,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                 Container(
                   width: 300,
                   margin: EdgeInsets.only(top: 80),
-                  child: RaisedButton(
-                    color: Colors.green,
-                    child: Text('Næste', style: TextStyle(color: Colors.white),),
-                    onPressed: () =>
-                    {
-                      print(_shuffledWords),
-                      //if (widget.words.keys.toList().legth())
-                      print('${_wordsKeys[widget.round]} er ${_wordsValues[widget.round]}'),
-                      if (guess!=_wordsValues[widget.round]) {
-                        setState(() => {_correctionText = '"${_wordsKeys[widget.round]}" er "${widget.words[_wordsKeys[widget.round]]}"',
-                }),
-                        print('not right')
-                      },
-                      if (_formkey.currentState.validate()) {
-                        widget.round += 1,
-                        Navigator.pushReplacement(
-                          context,
-                          PageRouteBuilder(
-                            transitionDuration: Duration(seconds: 0),
-                            pageBuilder: (context, animation1, animation2) =>
-                                IngameWidget(words: widget.words, round: widget
-                                    .round, points: widget.points,),),)
-                      },
-
-                    },
-                  ),
+                  child: swapButton,
                 ),
               ],
             ),
@@ -127,33 +144,5 @@ class _IngameWidgetState extends State<IngameWidget> {
     } catch (error) {
       Navigator.pop(context);
     }
-  }
-}
-
-class MyPoints extends StatefulWidget {
-
-  final int points;
-  MyPoints({Key key, this.points}) : super(key: key);
-
-  @override
-  _MyPointsState createState() => _MyPointsState();
-}
-
-class _MyPointsState extends State<MyPoints> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 10, left: 10),
-      child: Row(
-        children: <Widget>[
-          Image.asset(
-            'assets/sidekick.jpg',
-            scale: 40,
-          ),
-          Text('=', style: TextStyle(fontSize: 20),),
-          Text('${widget.points}')
-        ],
-      ),
-    );
   }
 }
