@@ -25,7 +25,7 @@ class Belt extends StatelessWidget {
     'Santeul': 'Bjerg',
     'Oe-santeul': 'Halvt bjerg',
     'Pal': '8.',
-    'Geodeureo': 'støtte',
+    'Geodeureo': 'Støtte',
   };
 
   @override

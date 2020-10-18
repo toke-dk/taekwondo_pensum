@@ -11,12 +11,24 @@ class IngameWidget extends StatefulWidget {
 }
 
 class _IngameWidgetState extends State<IngameWidget> {
+
+  var _shuffledWords;
+  var _wordsKeys;
+  var _wordsValues;
+  @override
+  void initState() {
+    _wordsKeys = widget.words.keys.toList();
+    _wordsValues = widget.words.values.toList();
+    _wordsKeys..shuffle();
+    super.initState();
+  }
+
   var _formkey = GlobalKey<FormState>();
   String guess = '';
   String _correctionText = '';
   @override
   Widget build(BuildContext context) {
-    print(widget.words);
+    print('${widget.words} ${_wordsKeys}');
     try {
       return Scaffold(
         appBar: AppBar(
@@ -31,7 +43,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                 MyPoints(points: widget.points,),
                 Container(
                   margin: EdgeInsets.only(top: 20),
-                  child: Text(widget.words.keys.toList()[widget.round],
+                  child: Text(_wordsKeys[widget.round],
                     style: TextStyle(fontSize: 25),),
                 ),
                 Container(
@@ -45,7 +57,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                       if (value.isEmpty) {
                         return 'Skriv venligst tekst';
                       }
-                      else if (guess != widget.words.values.toList()[widget.round]) {
+                      else if (value != widget.words[_wordsKeys[widget.round]]) {
                         return 'Ikke korrekt';
                       }
                       else {
@@ -85,10 +97,11 @@ class _IngameWidgetState extends State<IngameWidget> {
                     child: Text('Næste', style: TextStyle(color: Colors.white),),
                     onPressed: () =>
                     {
+                      print(_shuffledWords),
                       //if (widget.words.keys.toList().legth())
-                      print('${widget.words.keys.toList()[widget.round]} er ${widget.words.values.toList()[widget.round]}'),
-                      if (guess!=widget.words.values.toList()[widget.round]) {
-                        setState(() => {_correctionText = '"${widget.words.keys.toList()[widget.round]}" er "${widget.words.values.toList()[widget.round]}"',
+                      print('${_wordsKeys[widget.round]} er ${_wordsValues[widget.round]}'),
+                      if (guess!=_wordsValues[widget.round]) {
+                        setState(() => {_correctionText = '"${_wordsKeys[widget.round]}" er "${widget.words[_wordsKeys[widget.round]]}"',
                 }),
                         print('not right')
                       },
