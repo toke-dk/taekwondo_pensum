@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 class IngameWidget extends StatefulWidget {
   int round;
   var words;
-  int points;
-  IngameWidget({Key key, this.words, this.round, this.points}) : super(key: key);
+  IngameWidget({Key key, this.words, this.round}) : super(key: key);
 
   @override
   _IngameWidgetState createState() => _IngameWidgetState();
@@ -23,6 +22,7 @@ class _IngameWidgetState extends State<IngameWidget> {
   }
 
   var _wordsKeys;
+  int points = 0;
   var _wordsValues;
   @override
   void initState() {
@@ -78,6 +78,7 @@ class _IngameWidgetState extends State<IngameWidget> {
         onPressed: () {
           if (guess.toLowerCase() == widget.words[_wordsKeys[widget.round]].toLowerCase()) {
             isAnswer = true;
+            points += 1;
           } else {
             isAnswer = false;
           }
@@ -91,7 +92,8 @@ class _IngameWidgetState extends State<IngameWidget> {
     try {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Pensum træner'),
+          centerTitle: true,
+          title: Text('Point: $points'),
         ),
         body: SingleChildScrollView(
           child: Form(
