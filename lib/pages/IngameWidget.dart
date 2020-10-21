@@ -2,6 +2,7 @@
 // TODO make it over and over
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:taekwondopensum/pages/ResultWidget.dart';
 
 class IngameWidget extends StatefulWidget {
   int round;
@@ -64,10 +65,17 @@ class _IngameWidgetState extends State<IngameWidget> {
         child: Text('Næste', style: TextStyle(color: Colors.white),),
         onPressed: () => {
           setState(() {
-            clearInput();
-            guess = '';
-            widget.round += 1;
-            _showAnswer = !_showAnswer;
+            if (_wordsKeys.length - widget.round - 1 == 0) {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) =>
+                  ResultWidget(remainWords: widget.words,)
+              ));
+            } else {
+              clearInput();
+              guess = '';
+              widget.round += 1;
+              _showAnswer = !_showAnswer;
+            }
           })
         },
       );
@@ -103,7 +111,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                 showAnswerWidget,
                 Container(
                   margin: EdgeInsets.only(top: 20),
-                  child: Text(_wordsKeys[widget.round],
+                  child: Text('${widget.round + 1}: ${_wordsKeys[widget.round]}',
                     style: TextStyle(fontSize: 25),),
                 ),
                 Container(
