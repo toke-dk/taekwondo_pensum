@@ -43,7 +43,6 @@ class _IngameWidgetState extends State<IngameWidget> {
     Widget showAnswerWidget = Container();
     if (_showAnswer) {
       showAnswerWidget = Container(
-        margin: EdgeInsets.all(10),
         height: 60,
         color: isAnswer ? Colors.lightGreen : Colors.redAccent,
         child: Row(
