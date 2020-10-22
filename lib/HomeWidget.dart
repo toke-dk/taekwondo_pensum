@@ -32,10 +32,22 @@ class Belt extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: InkWell(
-        onTap: () {Navigator.push(context, MaterialPageRoute(
-            builder: (context) =>
-                IngameWidget(words: words, round: 0,)
-        ));},
+        onTap: () async {
+          await showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Der klommer ${words.keys.toList().length} spørgsmål'),
+              content: Text('Vil du starte?'),
+              actions: <Widget>[
+                FlatButton(onPressed: () => {Navigator.pop(context)}, child: Text('Nej')),
+                FlatButton(onPressed: () => {Navigator.push(context, MaterialPageRoute(
+                    builder: (context) =>
+                        IngameWidget(words: words, round: 0,)
+                ))}, child: Text('Ja')),
+              ],
+            ),
+          );
+          },
         child: Container(
           margin: EdgeInsets.all(10),
           height: 40,
