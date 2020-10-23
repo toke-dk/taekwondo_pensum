@@ -15,6 +15,12 @@ class _ResultWidgetState extends State<ResultWidget> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Resultat'),
+        leading: IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () => {
+            Navigator.popUntil(context, (route) => route.isFirst)
+          },
+        ),
       ),
       body: ListView.builder(itemBuilder: _itemBuilder, itemCount: widget.remainWords.keys.length,),
     );
