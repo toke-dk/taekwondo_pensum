@@ -16,6 +16,13 @@ class _ResultWidgetState extends State<ResultWidget> {
       appBar: AppBar(
         title: Text('Resultat'),
       ),
+      body: ListView.builder(itemBuilder: _itemBuilder, itemCount: widget.remainWords.keys.length,),
     );
   }
+  Widget _itemBuilder(BuildContext context, int index) {
+    return Container(
+      child: Text('${index + 1}: ${widget.remainWords.keys.toList()[index]}'),
+      );
+  }
 }
+

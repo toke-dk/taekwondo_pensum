@@ -24,12 +24,14 @@ class _IngameWidgetState extends State<IngameWidget> {
 
   var _wordsKeys;
   int points = 0;
+  var cloneWords;
   var _wordsValues;
   @override
   void initState() {
     _wordsKeys = widget.words.keys.toList();
     _wordsValues = widget.words.values.toList();
     _wordsKeys..shuffle();
+    cloneWords = Map<String, String>.from(widget.words)..addAll({});
     super.initState();
   }
 
@@ -65,9 +67,9 @@ class _IngameWidgetState extends State<IngameWidget> {
         onPressed: () => {
           setState(() {
             if (_wordsKeys.length - widget.round - 1 == 0) {
-              Navigator.push(context, MaterialPageRoute(
+              Navigator.pushReplacement(context, MaterialPageRoute(
                 builder: (context) =>
-                  ResultWidget(remainWords: widget.words,)
+                  ResultWidget(remainWords: cloneWords,)
               ));
             } else {
               clearInput();
@@ -86,6 +88,7 @@ class _IngameWidgetState extends State<IngameWidget> {
           if (guess.toLowerCase() == widget.words[_wordsKeys[widget.round]].toLowerCase()) {
             isAnswer = true;
             points += 1;
+            cloneWords.remove(_wordsKeys[widget.round]);
           } else {
             isAnswer = false;
           }
