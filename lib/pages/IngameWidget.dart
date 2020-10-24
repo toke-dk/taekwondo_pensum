@@ -2,6 +2,7 @@
 // TODO make it over and over
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:taekwondopensum/pages/result/ResultWidget.dart';
 
 class IngameWidget extends StatefulWidget {
@@ -37,7 +38,6 @@ class _IngameWidgetState extends State<IngameWidget> {
     super.initState();
   }
 
-  var _formkey = GlobalKey<FormState>();
   String guess = '';
   String _correctionText = '';
 
@@ -74,7 +74,7 @@ class _IngameWidgetState extends State<IngameWidget> {
         ),
       );
       swapButton = RaisedButton(
-        color: isAnswer ? Colors.lightGreen[800] : Colors.blue,
+        color: isAnswer ? Colors.lightGreen[700] : Colors.blue,
         child: Text(
           'Næste',
           style: TextStyle(color: Colors.white),
@@ -158,23 +158,31 @@ class _IngameWidgetState extends State<IngameWidget> {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formkey,
-          child: Column(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Column(
             children: <Widget>[
               showAnswerWidget,
               Container(
                 margin: EdgeInsets.only(top: 20),
                 child: Text(
-                  '${widget.round + 1}: ${_wordsKeys[widget.round]}',
+                  '${widget.round + 1}',
                   style: TextStyle(fontSize: 25),
                 ),
               ),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 60, vertical: 50),
+                margin: EdgeInsets.only(top: 20),
+                child: Text(
+                  '${_wordsKeys[widget.round]}',
+                  style: TextStyle(fontSize: 25),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 60, right: 60, top: 10),
                 alignment: Alignment.topCenter,
                 child: TextFormField(
+                  textAlign: TextAlign.center,
                   textCapitalization: TextCapitalization.words,
                   controller: nameHolder,
                   onChanged: (value) {
@@ -182,11 +190,14 @@ class _IngameWidgetState extends State<IngameWidget> {
                   },
                   autofocus: true,
                   decoration: InputDecoration(
+                    hintText: 'Skriv dit bud her',
                       enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(color: Colors.white, width: 2),
                         //borderRadius: BorderRadius.circular(12)
                       ),
                       focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(color: Colors.blue, width: 2),
                         //borderRadius: BorderRadius.circular(12)
                       ),
@@ -198,18 +209,14 @@ class _IngameWidgetState extends State<IngameWidget> {
                   ),
                 ),
               ),
-              Text(
-                _correctionText,
-                style: TextStyle(color: Colors.red),
-              ),
-              Container(
-                width: 300,
-                margin: EdgeInsets.only(top: 80),
-                child: swapButton,
-              ),
             ],
           ),
-        ),
+          Container(
+            margin: EdgeInsets.only(bottom: 10),
+            width: 300,
+            child: swapButton,
+          ),
+        ],
       ),
     );
   }
