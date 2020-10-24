@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:taekwondopensum/ResultButtonWidget.dart';
-import 'package:taekwondopensum/pages/IngameWidget.dart';
 
-class ResultWidget extends StatefulWidget {
+import '../../ResultButtonWidget.dart';
+import '../IngameWidget.dart';
+
+class WordsResultWidget extends StatefulWidget {
   final remainWords;
 
-  ResultWidget({Key key, this.remainWords}) : super(key: key);
+  WordsResultWidget({Key key, this.remainWords}) : super(key: key);
 
   @override
-  _ResultWidgetState createState() => _ResultWidgetState();
+  _WordsResultWidgetState createState() => _WordsResultWidgetState();
 }
 
-class _ResultWidgetState extends State<ResultWidget> {
+class _WordsResultWidgetState extends State<WordsResultWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

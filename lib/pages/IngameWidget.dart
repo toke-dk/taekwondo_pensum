@@ -2,7 +2,7 @@
 // TODO make it over and over
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:taekwondopensum/pages/ResultWidget.dart';
+import 'package:taekwondopensum/pages/result/ResultWidget.dart';
 
 class IngameWidget extends StatefulWidget {
   int round;
