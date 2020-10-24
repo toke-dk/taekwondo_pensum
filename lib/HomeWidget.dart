@@ -60,7 +60,13 @@ class Belt extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.all(10),
           height: 40,
-          color: Colors.red,
+          decoration: BoxDecoration(
+              color: Colors.red,
+              border: Border.all(
+                  color: Colors.red[900],
+                  width: 2
+              )
+          ),
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 10),
             child: Row(
