@@ -17,7 +17,7 @@ class IngameWidget extends StatefulWidget {
 
 class _IngameWidgetState extends State<IngameWidget> {
   bool _showAnswer = false;
-  bool isAnswer;
+  bool isAnswer = false;
   final nameHolder = TextEditingController();
 
   clearInput() {
@@ -81,6 +81,7 @@ class _IngameWidgetState extends State<IngameWidget> {
         ),
         onPressed: () => {
           setState(() {
+            isAnswer = false;
             if (_wordsKeys.length - widget.round - 1 == 0) {
               Navigator.pushReplacement(
                   context,
@@ -198,7 +199,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(color: Colors.blue, width: 2),
+                        borderSide: BorderSide(color: isAnswer ? Colors.green : Colors.blue, width: 2),
                         //borderRadius: BorderRadius.circular(12)
                       ),
                       fillColor: Colors.grey[300],
