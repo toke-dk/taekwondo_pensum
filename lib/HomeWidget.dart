@@ -14,12 +14,11 @@ class HomeWidget extends StatelessWidget {
 }
 
 class Belt extends StatelessWidget {
-
   var words = {
     'Bam-jumeok': 'Kastanjenæve',
     'Balnal-deung': 'Inderside af fod',
     'Sonnal-deung': 'Inderside af knivhånd',
-    'Teok':'Hage',
+    'Teok': 'Hage',
     'Dangyo': 'Trække',
     'Santeul': 'Bjerg',
     'Oe-santeul': 'Halvt bjerg',
@@ -36,18 +35,28 @@ class Belt extends StatelessWidget {
           await showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: Text('Der klommer ${words.keys.toList().length} spørgsmål'),
+              title:
+                  Text('Der klommer ${words.keys.toList().length} spørgsmål'),
               content: Text('Vil du starte?'),
               actions: <Widget>[
-                FlatButton(onPressed: () => {Navigator.pop(context)}, child: Text('Nej')),
-                FlatButton(onPressed: () => {Navigator.push(context, MaterialPageRoute(
-                    builder: (context) =>
-                        IngameWidget(words: words, round: 0,)
-                ))}, child: Text('Ja')),
+                FlatButton(
+                    onPressed: () => {Navigator.pop(context)},
+                    child: Text('Nej')),
+                FlatButton(
+                    onPressed: () => {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => IngameWidget(
+                                        words: words,
+                                        round: 0,
+                                      )))
+                        },
+                    child: Text('Ja')),
               ],
             ),
           );
-          },
+        },
         child: Container(
           margin: EdgeInsets.all(10),
           height: 40,
@@ -57,7 +66,10 @@ class Belt extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('3.Kup', style: TextStyle(color: Colors.white),),
+                Text(
+                  '3.Kup',
+                  style: TextStyle(color: Colors.white),
+                ),
                 Container(
                   width: 10,
                   color: Colors.black,

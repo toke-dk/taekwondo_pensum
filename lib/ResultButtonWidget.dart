@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class ResultButtonWidget extends StatefulWidget {
   final color, text, icon;
   Function myOnTap;
-  ResultButtonWidget({Key key, this.color, this.text, this.icon, this.myOnTap}) : super(key : key);
+
+  ResultButtonWidget({Key key, this.color, this.text, this.icon, this.myOnTap})
+      : super(key: key);
+
   @override
   _ResultButtonWidgetState createState() => _ResultButtonWidgetState();
 }
@@ -24,15 +27,17 @@ class _ResultButtonWidgetState extends State<ResultButtonWidget> {
               height: 60,
               decoration: BoxDecoration(
                   color: widget.color,
-                  border: Border.all(
-                      color: widget.color[900], width: 3
-                  )
-              ),
+                  border: Border.all(color: widget.color[900], width: 3)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(widget.text, style: TextStyle(color: Colors.white, fontSize: 16),),
-                  SizedBox(width: 5,),
+                  Text(
+                    widget.text,
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
                   Icon(widget.icon, color: Colors.white)
                 ],
               ),

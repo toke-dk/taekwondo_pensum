@@ -4,8 +4,8 @@ import 'HomeWidget.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/',
-  routes: {
-    '/': (context) => HomeWidget(),
-  },
-));
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomeWidget(),
+      },
+    ));
