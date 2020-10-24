@@ -81,7 +81,6 @@ class _IngameWidgetState extends State<IngameWidget> {
         ),
         onPressed: () => {
           setState(() {
-            isAnswer = false;
             if (_wordsKeys.length - widget.round - 1 == 0) {
               Navigator.pushReplacement(
                   context,
@@ -91,6 +90,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                           )));
             } else {
               clearInput();
+              isAnswer = false;
               guess = '';
               widget.round += 1;
               _showAnswer = !_showAnswer;
