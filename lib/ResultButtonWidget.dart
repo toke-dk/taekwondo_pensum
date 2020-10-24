@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class ResultButtonWidget extends StatefulWidget {
   final color, text, icon;
-  ResultButtonWidget({Key key, this.color, this.text, this.icon});
+  Function myOnTap;
+  ResultButtonWidget({Key key, this.color, this.text, this.icon, this.myOnTap}) : super(key : key);
   @override
   _ResultButtonWidgetState createState() => _ResultButtonWidgetState();
 }
@@ -12,6 +13,7 @@ class _ResultButtonWidgetState extends State<ResultButtonWidget> {
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
+        onTap: widget.myOnTap,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,

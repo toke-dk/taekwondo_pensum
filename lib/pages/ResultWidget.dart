@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taekwondopensum/ResultButtonWidget.dart';
+import 'package:taekwondopensum/pages/IngameWidget.dart';
 
 class ResultWidget extends StatefulWidget {
 
@@ -32,8 +33,23 @@ class _ResultWidgetState extends State<ResultWidget> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    ResultButtonWidget(color: Colors.red, text: 'Færdig', icon: Icons.done_all,),
-                    ResultButtonWidget(color: Colors.green, text: 'Videre', icon: Icons.arrow_forward,)
+                    ResultButtonWidget(
+                      color: Colors.red,
+                      text: 'Færdig',
+                      icon: Icons.done_all,
+                      myOnTap: () => {
+                        Navigator.popUntil(context, (route) => route.isFirst)
+                      },
+                    ),
+                    ResultButtonWidget(
+                      color: Colors.green,
+                      text: 'Videre',
+                      icon: Icons.arrow_forward,
+                      myOnTap: () => {Navigator.pushReplacement(context, MaterialPageRoute(
+                        builder: (context) =>
+                            IngameWidget(words: widget.remainWords, round: 1,)
+                      ))},
+                    )
                   ],
                 ),
               )

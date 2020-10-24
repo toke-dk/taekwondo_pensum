@@ -99,7 +99,6 @@ class _IngameWidgetState extends State<IngameWidget> {
       );
     }
     bool leave;
-    try {
       return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -192,8 +191,5 @@ class _IngameWidgetState extends State<IngameWidget> {
           ),
         ),
       );
-    } catch (error) {
-      Navigator.pop(context);
     }
   }
-}
