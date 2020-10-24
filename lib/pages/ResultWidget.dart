@@ -54,7 +54,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                         MaterialPageRoute(
                             builder: (context) => IngameWidget(
                                   words: widget.remainWords,
-                                  round: 1,
+                                  round: 0,
                                 )))
                   },
                 )
