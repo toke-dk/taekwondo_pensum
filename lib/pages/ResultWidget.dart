@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taekwondopensum/ResultButtonWidget.dart';
 
 class ResultWidget extends StatefulWidget {
 
@@ -22,7 +23,23 @@ class _ResultWidgetState extends State<ResultWidget> {
           },
         ),
       ),
-      body: ListView.builder(itemBuilder: _itemBuilder, itemCount: widget.remainWords.keys.length,),
+      body: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(child: ListView.builder(itemBuilder: _itemBuilder, itemCount: widget.remainWords.keys.length, shrinkWrap: true,)),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    ResultButtonWidget(color: Colors.red, text: 'Færdig', icon: Icons.done_all,),
+                    ResultButtonWidget(color: Colors.green, text: 'Videre', icon: Icons.arrow_forward,)
+                  ],
+                ),
+              )
+            ],
+          )
+      ),
     );
   }
   Widget _itemBuilder(BuildContext context, int index) {
@@ -31,4 +48,3 @@ class _ResultWidgetState extends State<ResultWidget> {
       );
   }
 }
-
