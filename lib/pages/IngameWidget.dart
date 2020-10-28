@@ -43,83 +43,7 @@ class _IngameWidgetState extends State<IngameWidget> {
 
   @override
   Widget build(BuildContext context) {
-    Widget swapButton = Container();
     Widget showAnswerWidget = Container();
-    if (_showAnswer) {
-      showAnswerWidget = Container(
-        height: 60,
-        color: isAnswer ? Colors.lightGreen : Colors.redAccent,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  isAnswer ? 'Korrekt!' : 'Tæt på!',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                isAnswer
-                    ? SizedBox()
-                    : Text(
-                        '"${_wordsKeys[widget.round]}" er "${widget.words[_wordsKeys[widget.round]]}"',
-                        style: TextStyle(color: Colors.white),
-                      )
-              ],
-            ),
-          ],
-        ),
-      );
-      swapButton = RaisedButton(
-        color: isAnswer ? Colors.lightGreen[700] : Colors.blue,
-        child: Text(
-          'Næste',
-          style: TextStyle(color: Colors.white),
-        ),
-        onPressed: () => {
-          setState(() {
-            if (_wordsKeys.length - widget.round - 1 == 0) {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ResultWidget(
-                            remainWords: cloneWords,
-                          )));
-            } else {
-              clearInput();
-              isAnswer = false;
-              guess = '';
-              widget.round += 1;
-              _showAnswer = !_showAnswer;
-            }
-          })
-        },
-      );
-    } else {
-      swapButton = RaisedButton(
-        color: Colors.blue,
-        child: Text(
-          'Check svar',
-          style: TextStyle(color: Colors.white),
-        ),
-        onPressed: () {
-          if (guess.toLowerCase() ==
-              widget.words[_wordsKeys[widget.round]].toLowerCase()) {
-            isAnswer = true;
-            points += 1;
-            cloneWords.remove(_wordsKeys[widget.round]);
-          } else {
-            isAnswer = false;
-          }
-          setState(() {
-            _showAnswer = !_showAnswer;
-          });
-        },
-      );
-    }
     bool leave;
     return Scaffold(
       appBar: AppBar(
@@ -179,43 +103,76 @@ class _IngameWidgetState extends State<IngameWidget> {
                   style: TextStyle(fontSize: 25),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(left: 60, right: 60, top: 10),
-                alignment: Alignment.topCenter,
-                child: TextFormField(
-                  textAlign: TextAlign.center,
-                  textCapitalization: TextCapitalization.words,
-                  controller: nameHolder,
-                  onChanged: (value) {
-                    guess = value;
-                  },
-                  autofocus: true,
-                  decoration: InputDecoration(
-                    hintText: 'Skriv dit bud her',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(color: Colors.white, width: 2),
-                        //borderRadius: BorderRadius.circular(12)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(color: isAnswer ? Colors.green : Colors.blue, width: 2),
-                        //borderRadius: BorderRadius.circular(12)
-                      ),
-                      fillColor: Colors.grey[300],
-                      filled: true,
-                      border: InputBorder.none),
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-              ),
             ],
           ),
           Container(
-            margin: EdgeInsets.only(bottom: 10),
-            width: 300,
-            child: swapButton,
+            margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+            alignment: Alignment.centerRight,
+            child: TextFormField(
+              textAlign: TextAlign.center,
+              textCapitalization: TextCapitalization.words,
+              controller: nameHolder,
+              onChanged: (value) {
+                guess = value;
+              },
+              autofocus: true,
+              decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    onPressed: () => {
+                      setState((){
+                        if (! _showAnswer) {
+                          if (guess.toLowerCase() ==
+                              widget.words[_wordsKeys[widget.round]].toLowerCase()) {
+                            isAnswer = true;
+                            points += 1;
+                            cloneWords.remove(_wordsKeys[widget.round]);
+                          } else {
+                            isAnswer = false;
+                          }
+                          setState(() {
+                            _showAnswer = !_showAnswer;
+                          });
+                        }
+                        else {
+                          if (_wordsKeys.length - widget.round - 1 == 0) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ResultWidget(
+                                      remainWords: cloneWords,
+                                    )));
+                          } else {
+                            clearInput();
+                            isAnswer = false;
+                            guess = '';
+                            widget.round += 1;
+                            _showAnswer = !_showAnswer;
+                          }
+                        }
+                      })
+
+                    },
+                    icon: Icon(Icons.send),
+
+                  ),
+                  hintText: 'Skriv dit bud her',
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide(color: Colors.white, width: 2),
+                    //borderRadius: BorderRadius.circular(12)
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide(color: isAnswer ? Colors.green : Colors.blue, width: 2),
+                    //borderRadius: BorderRadius.circular(12)
+                  ),
+                  fillColor: Colors.grey[300],
+                  filled: true,
+                  border: InputBorder.none),
+              style: TextStyle(
+                fontSize: 15,
+              ),
+            ),
           ),
         ],
       ),
