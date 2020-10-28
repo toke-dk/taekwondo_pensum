@@ -16,6 +16,7 @@ class _WordsResultWidgetState extends State<WordsResultWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text('Resultat'),
         leading: IconButton(
@@ -69,7 +70,9 @@ class _WordsResultWidgetState extends State<WordsResultWidget> {
 
   Widget _itemBuilder(BuildContext context, int index) {
     return Container(
-      child: Text('${index + 1}: ${widget.remainWords.keys.toList()[index]}'),
+        alignment: Alignment.center,
+        margin: EdgeInsets.symmetric(vertical: 12),
+        child: Text('${index + 1}: ${widget.remainWords.keys.toList()[index]}: ${widget.remainWords.values.toList()[index]}'),
     );
   }
 }
