@@ -47,7 +47,7 @@ class _IngameWidgetState extends State<IngameWidget> {
     bool leave;
     if (_showAnswer) {
       showAnswerWidget = Container(
-              height: 60,
+              height: 56,
                   color: isAnswer ? Colors.lightGreen : Colors.redAccent,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +57,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                         children: <Widget>[
                      Text(
                        isAnswer ? 'Korrekt!' : 'Tæt på!',
-                           style: TextStyle(color: Colors.white, fontSize: 20),
+                           style: TextStyle(color: Colors.white, fontSize: 19),
                     ),
                     SizedBox(
                       height: 5,
@@ -133,10 +133,10 @@ class _IngameWidgetState extends State<IngameWidget> {
               Container(
                 margin: EdgeInsets.only(top: 5),
                 child: CircleAvatar(
-                  radius: 25,
+                  radius: 22,
                   child: Text(
                     '${widget.round + 1}',
-                    style: TextStyle(fontSize: 30),
+                    style: TextStyle(fontSize: 27),
                   ),
                 ),
               ),
@@ -147,7 +147,7 @@ class _IngameWidgetState extends State<IngameWidget> {
               Container(
                 child: Text(
                   '${_wordsKeys[widget.round]}',
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(fontSize: 25, fontFamily: 'Quicksand', fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -197,10 +197,8 @@ class _IngameWidgetState extends State<IngameWidget> {
                           }
                         }
                       })
-
                     },
                     icon: Icon(Icons.send),
-
                   ),
                   hintText: 'Skriv dit bud her',
                   enabledBorder: OutlineInputBorder(
