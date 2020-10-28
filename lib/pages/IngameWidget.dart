@@ -45,10 +45,39 @@ class _IngameWidgetState extends State<IngameWidget> {
   Widget build(BuildContext context) {
     Widget showAnswerWidget = Container();
     bool leave;
+    if (_showAnswer) {
+      showAnswerWidget = Container(
+              height: 60,
+                  color: isAnswer ? Colors.lightGreen : Colors.redAccent,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                     Text(
+                       isAnswer ? 'Korrekt!' : 'Tæt på!',
+                           style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    isAnswer
+                        ? SizedBox()
+                        : Text(
+                            '"${_wordsKeys[widget.round]}" er "${widget.words[_wordsKeys[widget.round]]}"',
+                            style: TextStyle(color: Colors.white),
+                          )
+                  ],
+                ),
+                    ],
+                  ),
+          );
+    }
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Point: $points'),
         leading: IconButton(
           icon: Icon(Icons.close),
           // show exit dialog
@@ -82,6 +111,18 @@ class _IngameWidgetState extends State<IngameWidget> {
             }
           },
         ),
+        title: Row(
+          children: <Widget>[
+            Text('Point'),
+            SizedBox(width: 8,),
+            CircleAvatar(
+              child: Text('$points', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+              radius: 20,
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.blue,
+            )
+          ],
+        )
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,14 +131,20 @@ class _IngameWidgetState extends State<IngameWidget> {
             children: <Widget>[
               showAnswerWidget,
               Container(
-                margin: EdgeInsets.only(top: 20),
-                child: Text(
-                  '${widget.round + 1}',
-                  style: TextStyle(fontSize: 25),
+                margin: EdgeInsets.only(top: 5),
+                child: CircleAvatar(
+                  radius: 25,
+                  child: Text(
+                    '${widget.round + 1}',
+                    style: TextStyle(fontSize: 30),
+                  ),
                 ),
               ),
+              Divider(
+                height: 20,
+                indent: 20,
+                endIndent: 20,),
               Container(
-                margin: EdgeInsets.only(top: 20),
                 child: Text(
                   '${_wordsKeys[widget.round]}',
                   style: TextStyle(fontSize: 25),
