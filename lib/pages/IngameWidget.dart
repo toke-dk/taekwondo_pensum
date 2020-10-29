@@ -112,15 +112,21 @@ class _IngameWidgetState extends State<IngameWidget> {
           },
         ),
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text('Point'),
-            SizedBox(width: 8,),
-            CircleAvatar(
-              child: Text('$points', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
-              radius: 20,
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.blue,
-            )
+            Row(
+              children: <Widget>[
+                Text('Point'),
+                SizedBox(width: 8,),
+                CircleAvatar(
+                  child: Text('$points', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                  radius: 20,
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.blue,
+                )
+              ],
+            ),
+            Text('Runde: ${widget.round + 1}/${widget.words.values.length}')
           ],
         )
       ),
