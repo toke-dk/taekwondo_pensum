@@ -105,17 +105,25 @@ class _IngameWidgetState extends State<IngameWidget> {
           Column(
             children: <Widget>[
               showAnswerWidget,
-              Container(
-                margin: EdgeInsets.only(top: 5),
-                child: CircleAvatar(
-                  radius: 22,
-                  child: Text(
-                    '${widget.round + 1}',
-                    style: TextStyle(fontSize: 27),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  SizedBox(width: 50,),
+                  Container(
+                    margin: EdgeInsets.only(top: 5),
+                    child: CircleAvatar(
+                      radius: 22,
+                      child: Text(
+                        '${widget.round + 1}',
+                        style: TextStyle(fontSize: 27),
+                      ),
+                    ),
                   ),
-                ),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.lightbulb_outline),)
+                ],
               ),
               Divider(
+                thickness: 2,
                 height: 20,
                 indent: 20,
                 endIndent: 20,),
