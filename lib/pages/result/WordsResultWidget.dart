@@ -20,7 +20,7 @@ class _WordsResultWidgetState extends State<WordsResultWidget> {
       appBar: AppBar(
         title: Text('Tilykke!', style: TextStyle(fontFamily: 'Quicksand', fontWeight: FontWeight.bold, fontSize: 25),),
         actions: <Widget>[
-          Container(alignment: Alignment.center ,child: Text('${(widget.remainWords.values.toList().length/widget.totalWords.values.toList().length-1.0)*100}%', style: TextStyle(fontFamily: 'Quicksand', fontWeight: FontWeight.bold, fontSize: 18),)),
+          Container(alignment: Alignment.center ,child: Text('${((1.0-widget.remainWords.values.toList().length/widget.totalWords.values.toList().length)*100).roundToDouble()}%', style: TextStyle(fontFamily: 'Quicksand', fontWeight: FontWeight.bold, fontSize: 18),)),
 
         ],
         leading: IconButton(
