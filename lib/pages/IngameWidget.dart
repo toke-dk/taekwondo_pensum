@@ -170,6 +170,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                                 MaterialPageRoute(
                                     builder: (context) => ResultWidget(
                                       remainWords: cloneWords,
+                                      totalWords: widget.words,
                                     )));
                           } else {
                             clearInput();

@@ -4,9 +4,9 @@ import '../../ResultButtonWidget.dart';
 import '../IngameWidget.dart';
 
 class WordsResultWidget extends StatefulWidget {
-  final remainWords;
+  final remainWords, totalWords;
 
-  WordsResultWidget({Key key, this.remainWords}) : super(key: key);
+  WordsResultWidget({Key key, this.remainWords, this.totalWords}) : super(key: key);
 
   @override
   _WordsResultWidgetState createState() => _WordsResultWidgetState();
@@ -18,7 +18,11 @@ class _WordsResultWidgetState extends State<WordsResultWidget> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: Text('Resultat'),
+        title: Text('Tilykke!', style: TextStyle(fontFamily: 'Quicksand', fontWeight: FontWeight.bold, fontSize: 25),),
+        actions: <Widget>[
+          Container(alignment: Alignment.center ,child: Text('${(widget.remainWords.values.toList().length/widget.totalWords.values.toList().length-1.0)*100}%', style: TextStyle(fontFamily: 'Quicksand', fontWeight: FontWeight.bold, fontSize: 18),)),
+
+        ],
         leading: IconButton(
           icon: Icon(Icons.clear),
           onPressed: () =>
