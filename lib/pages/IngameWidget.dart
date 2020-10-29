@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:taekwondopensum/ExitDialog.dart';
 import 'package:taekwondopensum/pages/result/ResultWidget.dart';
 
 class IngameWidget extends StatefulWidget {
@@ -78,39 +79,7 @@ class _IngameWidgetState extends State<IngameWidget> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.close),
-          // show exit dialog
-          onPressed: () async {
-            print('Showing dialog');
-            await showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text('Exit?'),
-                content: Text('Are you sure you want to exit?'),
-                actions: <Widget>[
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      leave = false;
-                    },
-                    child: Text('No'),
-                  ),
-                  FlatButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        leave = true;
-                      },
-                      child: Text('Yes'))
-                ],
-              ),
-            );
-            print(leave);
-            if (leave) {
-              Navigator.of(context).popUntil((route) => route.isFirst);
-            }
-          },
-        ),
+        leading: ExitDialog(),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
