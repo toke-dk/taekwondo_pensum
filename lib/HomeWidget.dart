@@ -45,7 +45,6 @@ class HomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      resizeToAvoidBottomPadding: true,
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text('Taekwondo'),

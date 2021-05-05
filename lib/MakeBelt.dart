@@ -74,10 +74,10 @@ class Kup2Belt extends StatelessWidget {
 
 class Belt extends StatelessWidget {
   final words;
-  String text;
+  final String text;
   final color;
-  Color snipColor;
-  int snip;
+  final Color snipColor;
+  final int snip;
   Belt({this.words, this.color, this.snipColor, this.snip, this.text});
 
   @override
