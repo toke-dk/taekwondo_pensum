@@ -133,74 +133,91 @@ class _IngameWidgetState extends State<IngameWidget> {
                   style: TextStyle(fontSize: 25, fontFamily: 'Quicksand', fontWeight: FontWeight.bold),
                 ),
               ),
-            ],
+             ],
           ),
           Container(
             margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
             alignment: Alignment.centerRight,
-            child: TextFormField(
-              textAlign: TextAlign.center,
-              textCapitalization: TextCapitalization.words,
-              controller: nameHolder,
-              onChanged: (value) {
-                guess = value;
-              },
-              autofocus: true,
-              decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    onPressed: () => {
-                      setState((){
-                        if (! _showAnswer) {
-                          if (guess.toLowerCase() ==
-                              widget.words[_wordsKeys[widget.round]].toLowerCase()) {
-                            isAnswer = true;
-                            points += 1;
-                            cloneWords.remove(_wordsKeys[widget.round]);
-                          } else {
-                            isAnswer = false;
-                          }
-                          setState(() {
-                            _showAnswer = !_showAnswer;
-                          });
-                        }
-                        else {
-                          if (_wordsKeys.length - widget.round - 1 == 0) {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ResultWidget(
-                                      remainWords: cloneWords,
-                                      totalWords: widget.words,
-                                    )));
-                          } else {
-                            clearInput();
-                            isAnswer = false;
-                            guess = '';
-                            widget.round += 1;
-                            _showAnswer = !_showAnswer;
-                          }
-                        }
-                      })
-                    },
-                    icon: Icon(Icons.send),
+            child: Column(
+              children: [
+                Autocomplete<String>(
+                  optionsBuilder: (TextEditingValue textEditingValue) {
+                    if (textEditingValue.text == '') {
+                      return const Iterable<String>.empty();
+                    }
+                    return _wordsValues.where((String option) {
+                      return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                    });
+                  },
+                  onSelected: (String selection) {
+                    print('You just selected $selection');
+                  },
+                ),
+                SizedBox(height: 50,),
+                /*TextFormField(
+                  textAlign: TextAlign.center,
+                  controller: nameHolder,
+                  onChanged: (value) {
+                    guess = value;
+                  },
+                  autofocus: true,
+                  decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        onPressed: () => {
+                          setState((){
+                            if (! _showAnswer) {
+                              if (guess.toLowerCase() ==
+                                  widget.words[_wordsKeys[widget.round]].toLowerCase()) {
+                                isAnswer = true;
+                                points += 1;
+                                cloneWords.remove(_wordsKeys[widget.round]);
+                              } else {
+                                isAnswer = false;
+                              }
+                              setState(() {
+                                _showAnswer = !_showAnswer;
+                              });
+                            }
+                            else {
+                              if (_wordsKeys.length - widget.round - 1 == 0) {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ResultWidget(
+                                          remainWords: cloneWords,
+                                          totalWords: widget.words,
+                                        )));
+                              } else {
+                                clearInput();
+                                isAnswer = false;
+                                guess = '';
+                                widget.round += 1;
+                                _showAnswer = !_showAnswer;
+                              }
+                            }
+                          })
+                        },
+                        icon: Icon(Icons.send),
+                      ),
+                      hintText: 'Skriv dit bud her',
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: Colors.white, width: 2),
+                        //borderRadius: BorderRadius.circular(12)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(color: isAnswer ? Colors.green : Colors.blue, width: 2),
+                        //borderRadius: BorderRadius.circular(12)
+                      ),
+                      fillColor: Colors.grey[300],
+                      filled: true,
+                      border: InputBorder.none),
+                  style: TextStyle(
+                    fontSize: 15,
                   ),
-                  hintText: 'Skriv dit bud her',
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                    //borderRadius: BorderRadius.circular(12)
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: isAnswer ? Colors.green : Colors.blue, width: 2),
-                    //borderRadius: BorderRadius.circular(12)
-                  ),
-                  fillColor: Colors.grey[300],
-                  filled: true,
-                  border: InputBorder.none),
-              style: TextStyle(
-                fontSize: 15,
-              ),
+                ),*/
+              ],
             ),
           ),
         ],
