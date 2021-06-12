@@ -4,6 +4,18 @@ import 'package:taekwondopensum/pages/IngameWidget.dart';
 
 class HomeWidget extends StatelessWidget {
 
+  final kup3 = {
+    'Bam-jumeok': 'Kastanjenæve',
+    'Balnal-deung': 'Inderside af fod',
+    'Sonnal-deung': 'Inderside af knivhånd',
+    'Teok': 'Hage',
+    'Dangyo': 'Trække',
+    'Santeul': 'Bjerg',
+    'Oe-santeul': 'Halvt bjerg',
+    'Pal': 'Ottende',
+    'Geodeureo': 'Støtte',
+  };
+
   final kup2 = {
 /*
     'An-chung-joochoom-seogi': 'Indaddrejet hestestand',
@@ -28,20 +40,21 @@ class HomeWidget extends StatelessWidget {
     'Ship': 'Tiende'
   };
 
-  final kup3 = {
-      'Bam-jumeok': 'Kastanjenæve',
-      'Balnal-deung': 'Inderside af fod',
-      'Sonnal-deung': 'Inderside af knivhånd',
-      'Teok': 'Hage',
-      'Dangyo': 'Trække',
-      'Santeul': 'Bjerg',
-      'Oe-santeul': 'Halvt bjerg',
-      'Pal': 'Ottende',
-      'Geodeureo': 'Støtte',
-    };
+  final kup1 = {
+    'Pyojeok-jireugi': 'Pletslag',
+    'Me-jumeok area pyojeok-chigi': 'Pletslag i lav sektion',
+    'Mooreup-keokki':'Knække knæ',
+    'Pyeonson-keut je-chin-chireugi':'Fingerstik m. håndfladen opad',
+    'An-palmok hechyo-makki':'Adskilleblokering med inderside af underarm',
+    'Twieo ieo seokeo-chagi':'Flyvende blandet spark',
+    'Twieo baggueo-chagi':'Flyvende spark m. bageste ben',
+    'Twieo neomeo chagi':'Flyvende spark over forhindring',
+    'Modeumson-keut':'Femfingerstik',
+    'Keokki':'Knække',
+    'Je-chin pyeonson-keut':'Fingerstik med håndfladen opad',
+  };
 
-
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -52,13 +65,30 @@ class HomeWidget extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Belt(words: kup3, color: Colors.red, snipColor: Colors.black, text: '3.Kup',),
-            Kup2Belt(words: kup2,)
+            Belt(
+              words: kup3,
+              color: Colors.red,
+              snipColor: Colors.black,
+              text: '3.Kup',
+              snip: 1,
+            ),
+            Belt(
+              words: kup2,
+              color: Colors.red,
+              snipColor: Colors.black,
+              text: '2.Kup',
+              snip: 2,
+            ),
+            Belt(
+              words: kup1,
+              color: Colors.red,
+              snipColor: Colors.black,
+              text: '1.Kup',
+              snip: 3,
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
