@@ -48,29 +48,31 @@ class _IngameWidgetState extends State<IngameWidget> {
     bool leave;
     if (_showAnswer) {
       showAnswerWidget = Container(
-              height: 56,
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 4),
                   color: isAnswer ? Colors.lightGreen : Colors.redAccent,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                     Text(
-                       isAnswer ? 'Korrekt!' : 'Tæt på!',
-                           style: TextStyle(color: Colors.white, fontSize: 19),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    isAnswer
-                        ? SizedBox()
-                        : Text(
-                            '"${_wordsKeys[widget.round]}" er "${widget.words[_wordsKeys[widget.round]]}"',
-                            style: TextStyle(color: Colors.white),
-                          )
-                  ],
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                       Text(
+                         isAnswer ? 'Korrekt!' : 'Tæt på!',
+                             style: TextStyle(color: Colors.white, fontSize: 17,),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      isAnswer
+                          ? SizedBox()
+                          : Text(
+                              '"${_wordsKeys[widget.round]}" er "${widget.words[_wordsKeys[widget.round]]}"',
+                              style: TextStyle(color: Colors.white, fontSize: 12),
+                            )
+                    ],
                 ),
+                  ),
                     ],
                   ),
           );
@@ -138,7 +140,7 @@ class _IngameWidgetState extends State<IngameWidget> {
             margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
             alignment: Alignment.centerRight,
             child: Container(
-              margin: EdgeInsets.only(bottom: 300),
+              margin: EdgeInsets.only(bottom: 250),
               child: Column(
                 children: [
                   Row(
