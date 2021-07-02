@@ -51,7 +51,6 @@ class HomeWidget extends StatelessWidget {
     'Twieo neomeo chagi':'Flyvende spark over forhindring',
     'Modeumson-keut':'Femfingerstik',
     'Keokki':'Knække',
-    'Je-chin pyeonson-keut':'Fingerstik med håndfladen opad',
   };
 
   @override
