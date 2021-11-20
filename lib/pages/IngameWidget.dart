@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:taekwondopensum/ExitDialog.dart';
 import 'package:taekwondopensum/pages/result/ResultWidget.dart';
+import 'package:flutter/services.dart';
 
 class IngameWidget extends StatefulWidget {
   int round;
@@ -171,6 +172,7 @@ class _IngameWidgetState extends State<IngameWidget> {
                                       widget.words[_wordsKeys[widget.round]].toLowerCase()) {
                                     isAnswer = true;
                                     points += 1;
+                                    HapticFeedback.lightImpact();
                                     cloneWords.remove(_wordsKeys[widget.round]);
                                   } else {
                                     isAnswer = false;

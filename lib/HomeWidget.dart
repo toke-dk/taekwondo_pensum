@@ -4,7 +4,26 @@ import 'package:taekwondopensum/pages/IngameWidget.dart';
 
 class HomeWidget extends StatelessWidget {
 
+  final kup4 = {
+    'Beom-seogi': 'Tigerstand',
+    'Bo-jumeok joonbi-seogi': 'Dækket næve retstand',
+    'Mo seogi': 'Spids stand',
+    'Batangson geodureo momtong an-makki': 'Håndrods blokering m. støtte i midtersektion (modsatarm/ben)',
+    'Eotgeoreo area makki': 'Krydshånds blokering i lav sektion',
+    'Gawi-makki': 'Sakse blokering',
+    'Doo-jumeok jecheo-jireugi': 'Dobbelt slag m. knyttet næve m. håndfladerne opad',
+    'Momtong hechyo-makki': 'Udadgående adskille blokering',
+    'Geodeureo deung jumeok eolgul ap-chigi': 'Omvendt knoslag i høj sektion m. støtte',
+    'Sonnal area makki': 'Knivhåndsblokering i lav sektion (dobbelt)',
+    'Geodeup-chagi': 'To ens spark m. samme ben',
+    'Bada-chagi': 'Blokadespark',
+    'Twieo chagi': 'Flyvende spark',
+    'Nakeo-chagi': 'Front-krogspark',
+  };
+
   final kup3 = {
+    'Mo-joochoom-seogi': 'Spids hestestand',
+    'Ap-joochoom-seogi': 'Kort hestestand',
     'Bam-jumeok': 'Kastanjenæve',
     'Balnal-deung': 'Inderside af fod',
     'Sonnal-deung': 'Inderside af knivhånd',
@@ -28,7 +47,7 @@ class HomeWidget extends StatelessWidget {
     'Twieo ieo-chagi': 'Samme spark 2 gange flyvende',
     'Dwit nakeo-chagi': 'Bagudrettet krogspark',
 */
-
+    'An-chung-joochoom-seogi': 'Indaddrejet hestestand',
     'Jibge-jumeok': 'Pinsetnæve',
     'Gawison-keut': 'Sakse fingerstik',
     'Hanson-keut': 'Enkelt fingerstik',
@@ -41,6 +60,9 @@ class HomeWidget extends StatelessWidget {
   };
 
   final kup1 = {
+    'Tong-milgi joonbi-seogi': 'Skubbe klar stand',
+    'Gyottari-seogi': 'Hjælpe stand',
+    'O-ja-seogi': 'T-stand',
     'Pyojeok-jireugi': 'Pletslag',
     'Me-jumeok area pyojeok-chigi': 'Pletslag i lav sektion',
     'Mooreup-keokki':'Knække knæ',
@@ -64,6 +86,13 @@ class HomeWidget extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            Belt(
+              words: kup4,
+              color: Colors.blue,
+              snipColor: Colors.red,
+              text: '4.Kup',
+              snip: 1,
+            ),
             Belt(
               words: kup3,
               color: Colors.red,
