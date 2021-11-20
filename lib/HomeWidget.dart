@@ -3,17 +3,19 @@ import 'package:taekwondopensum/MakeBelt.dart';
 import 'package:taekwondopensum/pages/IngameWidget.dart';
 
 class HomeWidget extends StatelessWidget {
-
   final kup4 = {
     'Beom-seogi': 'Tigerstand',
     'Bo-jumeok joonbi-seogi': 'Dækket næve retstand',
     'Mo seogi': 'Spids stand',
-    'Batangson geodureo momtong an-makki': 'Håndrods blokering m. støtte i midtersektion (modsatarm/ben)',
+    'Batangson geodureo momtong an-makki':
+        'Håndrods blokering m. støtte i midtersektion (modsatarm/ben)',
     'Eotgeoreo area makki': 'Krydshånds blokering i lav sektion',
     'Gawi-makki': 'Sakse blokering',
-    'Doo-jumeok jecheo-jireugi': 'Dobbelt slag m. knyttet næve m. håndfladerne opad',
+    'Doo-jumeok jecheo-jireugi':
+        'Dobbelt slag m. knyttet næve m. håndfladerne opad',
     'Momtong hechyo-makki': 'Udadgående adskille blokering',
-    'Geodeureo deung jumeok eolgul ap-chigi': 'Omvendt knoslag i høj sektion m. støtte',
+    'Geodeureo deung jumeok eolgul ap-chigi':
+        'Omvendt knoslag i høj sektion m. støtte',
     'Sonnal area makki': 'Knivhåndsblokering i lav sektion (dobbelt)',
     'Geodeup-chagi': 'To ens spark m. samme ben',
     'Bada-chagi': 'Blokadespark',
@@ -65,14 +67,22 @@ class HomeWidget extends StatelessWidget {
     'O-ja-seogi': 'T-stand',
     'Pyojeok-jireugi': 'Pletslag',
     'Me-jumeok area pyojeok-chigi': 'Pletslag i lav sektion',
-    'Mooreup-keokki':'Knække knæ',
-    'Pyeonson-keut je-chin-chireugi':'Fingerstik m. håndfladen opad',
-    'An-palmok hechyo-makki':'Adskilleblokering med inderside af underarm',
-    'Twieo ieo seokeo-chagi':'Flyvende blandet spark',
-    'Twieo baggueo-chagi':'Flyvende spark m. bageste ben',
-    'Twieo neomeo chagi':'Flyvende spark over forhindring',
-    'Modeumson-keut':'Femfingerstik',
-    'Keokki':'Knække',
+    'Mooreup-keokki': 'Knække knæ',
+    'Pyeonson-keut je-chin-chireugi': 'Fingerstik m. håndfladen opad',
+    'An-palmok hechyo-makki': 'Adskilleblokering med inderside af underarm',
+    'Twieo ieo seokeo-chagi': 'Flyvende blandet spark',
+    'Twieo baggueo-chagi': 'Flyvende spark m. bageste ben',
+    'Twieo neomeo chagi': 'Flyvende spark over forhindring',
+    'Modeumson-keut': 'Femfingerstik',
+    'Keokki': 'Knække',
+  };
+
+  final dan1 = {
+    'Haktari-seogi': 'Tranestand',
+    'Batangson teok-chigi': 'Slag mod hage m. håndrod',
+    'Keumgang-makki': 'Diamant blokering',
+    'Keun-dolcheogi': 'Stort hængsel (svingslag)',
+    'Santeul-makki': 'Bjerg blokering'
   };
 
   @override
@@ -114,6 +124,11 @@ class HomeWidget extends StatelessWidget {
               text: '1.Kup',
               snip: 3,
             ),
+            Belt(
+              words: dan1,
+              color: Colors.black,
+              text: '1.Dan',
+            )
           ],
         ),
       ),
