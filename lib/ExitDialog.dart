@@ -6,8 +6,9 @@ class ExitDialog extends StatefulWidget {
 }
 
 class _ExitDialogState extends State<ExitDialog> {
+  bool leave = false;
+
   @override
-  bool leave;
   Widget build(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.close),
@@ -19,14 +20,14 @@ class _ExitDialogState extends State<ExitDialog> {
             title: Text('Exit?'),
             content: Text('Are you sure you want to exit?'),
             actions: <Widget>[
-              FlatButton(
+              OutlinedButton(
                 onPressed: () {
                   Navigator.pop(context);
                   leave = false;
                 },
                 child: Text('No'),
               ),
-              FlatButton(
+              FilledButton(
                   onPressed: () {
                     Navigator.pop(context);
                     leave = true;

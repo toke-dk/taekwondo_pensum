@@ -11,7 +11,7 @@ class IngameWidget extends StatefulWidget {
   int round;
   var words;
 
-  IngameWidget({Key key, this.words, this.round}) : super(key: key);
+  IngameWidget({Key? key, this.words, required this.round}) : super(key: key);
 
   @override
   _IngameWidgetState createState() => _IngameWidgetState();

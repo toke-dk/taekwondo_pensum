@@ -5,14 +5,14 @@ class Belt extends StatelessWidget {
   final words;
   final String text;
   final color;
-  final Color snipColor;
-  final int snip;
+  final Color? snipColor;
+  final int? snip;
   Belt(
-      {@required this.words,
-      @required this.color,
+      {required this.words,
+      required this.color,
       this.snipColor,
       this.snip,
-      @required this.text});
+      required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class Belt extends StatelessWidget {
             title: Text('Der kommer ${words.keys.toList().length} spørgsmål'),
             content: Text('Tryk "OK" for at komme igang'),
             actions: <Widget>[
-              FlatButton(
+              FilledButton(
                   onPressed: () => {
                         Navigator.push(
                             context,

@@ -6,7 +6,7 @@ import '../IngameWidget.dart';
 class WordsResultWidget extends StatefulWidget {
   final remainWords, totalWords;
 
-  WordsResultWidget({Key key, this.remainWords, this.totalWords}) : super(key: key);
+  WordsResultWidget({Key? key, this.remainWords, this.totalWords}) : super(key: key);
 
   @override
   _WordsResultWidgetState createState() => _WordsResultWidgetState();

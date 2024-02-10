@@ -7,7 +7,7 @@ import 'package:taekwondopensum/pages/result/WordsResultWidget.dart';
 class ResultWidget extends StatefulWidget {
   final remainWords, totalWords;
 
-  ResultWidget({Key key, this.remainWords, this.totalWords}) : super(key: key);
+  ResultWidget({Key? key, this.remainWords, this.totalWords}) : super(key: key);
 
   @override
   _ResultWidgetState createState() => _ResultWidgetState();
